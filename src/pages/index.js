@@ -1,8 +1,9 @@
 import React from "react"
-import App from './App';
+import loadable from '@loadable/component'
+const App = loadable(() => import('./App'))
 
 const IndexPage = () => (
-    <App />
+   <App />
 )
 
 export default IndexPage

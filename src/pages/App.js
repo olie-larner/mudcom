@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import useMouse from '@react-hook/mouse-position';
+
+import useMousePosition from '../utils/useMousePosition';
 import useWindowSize from '../utils/useWindowSize';
 
 import Sketch from '../components/Sketch';
@@ -12,32 +13,33 @@ import Slurry from '../media/Slurry.png';
 function App() {
 	const [blurAmount, setBlurAmount] = useState(undefined);
 	const ref = React.useRef(null);
-	const size = useWindowSize();
-	const mouse = useMouse(ref, {
-		enterDelay: 100,
-		leaveDelay: 100,
-	});
 
+	const size = useWindowSize();
+
+	const mouse = useMousePosition();
+	
 	useEffect(() => {
+		if(typeof window !== `undefined`){
 		const centerX = size.width * 0.5;
 		const centerY = size.height * 0.5;
 		if (mouse.x !== null && mouse.y !== null) {
-			if (mouse.x > centerX && mouse.y > centerY) {
-				const blur = mouse.x - centerX + (mouse.y - centerY);
-				setBlurAmount(blur / 10);
-			}
-			if (mouse.x < centerX && mouse.y < centerY) {
-				const blur = mouse.x - centerX + (mouse.y - centerY);
-				setBlurAmount(blur * -0.1);
-			}
-			if (mouse.x < centerX && mouse.y > centerY) {
-				const blur = mouse.x - centerX + (centerY - mouse.y);
-				setBlurAmount(blur * -0.1);
-			}
+				if (mouse.x > centerX && mouse.y > centerY) {
+					const blur = mouse.x - centerX + (mouse.y - centerY);
+					setBlurAmount(blur / 10);
+				}
+				if (mouse.x < centerX && mouse.y < centerY) {
+					const blur = mouse.x - centerX + (mouse.y - centerY);
+					setBlurAmount(blur * -0.1);
+				}
+				if (mouse.x < centerX && mouse.y > centerY) {
+					const blur = mouse.x - centerX + (centerY - mouse.y);
+					setBlurAmount(blur * -0.1);
+				}
 
-			if (mouse.x > centerX && mouse.y < centerY) {
-				const blur = mouse.x - centerX + (centerY - mouse.y);
-				setBlurAmount(blur / 10);
+				if (mouse.x > centerX && mouse.y < centerY) {
+					const blur = mouse.x - centerX + (centerY - mouse.y);
+					setBlurAmount(blur / 10);
+				}
 			}
 		}
 	}, [mouse.x, mouse.y, size.height, size.width]);
