@@ -55,7 +55,7 @@ function App() {
 					<img
 						src={MudCom}
 						alt=""
-						className="mx-1"
+						className="mx-1 my-2"
 					/>
 					<img
 						src={Slurry}
@@ -64,18 +64,18 @@ function App() {
 					/>
 				</div>
 				<div className="absolute bottom-0 flex flex-row items-center justify-center w-full mb-8">
-					<img
+					<a href="https://www.instagram.com/mudwig/"><img
 						src={Instagram}
 						alt=""
 						className="mx-1"
 						style={{ width: '24px' }}
-					/>
-					<img
+					/></a>
+					<a href="mailto:info@danielsparkes.com"><img
 						src={Email}
 						alt=""
 						className="mx-1"
 						style={{ width: '27px', height: '22px' }}
-					/>
+					/></a>
 				</div>
 			</div>
 		</div>
